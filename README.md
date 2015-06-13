@@ -8,3 +8,5 @@ Os dados foram obtidos diretamente de um json no site da virada.
 
 Contribuições são bem vindas.
 
+Infelizmente só está disponível para Android, [nesse link](https://play.google.com/store/apps/details?id=com.gabrielcapella.virada2015). 
+
