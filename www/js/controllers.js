@@ -1,7 +1,5 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
-
 .controller('InitCtrl', function($scope, $state) {
   $scope.local_f = function(){
     $state.go('tab.locais');
@@ -33,32 +31,6 @@ angular.module('starter.controllers', [])
     } catch (err) { console.log(err); }
   }, 250);
 
-
-
-/*
-      var mapDiv = document.getElementById("map_canvas");
-
-      const GOOGLE = new plugin.google.maps.LatLng($scope.local.location.latitude, $scope.local.location.longitude);
-      var map = plugin.google.maps.Map.getMap(mapDiv, {
-        'camera': {
-          'latLng': GOOGLE,
-          'zoom': 17
-        }
-      });
-
-      map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-
-        map.addMarker({
-          'position': GOOGLE,
-          'title': $scope.local.name
-        }, function(marker) {
-
-          marker.showInfoWindow();
-
-        });
-
-      });
-*/
 
   $scope.favoritoadd = function(id){
     Favoritos.add(id);
