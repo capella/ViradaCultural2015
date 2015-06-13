@@ -1,0 +1,183 @@
+@font-face {
+    font-family: 'Exo';
+    src: url('fonts/exo-regular-webfont.eot');
+    src: url('fonts/exo-regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/exo-regular-webfont.woff') format('woff'), url('fonts/exo-regular-webfont.ttf') format('truetype'), url('fonts/exo-regular-webfont.svg#exoregular') format('svg');
+    font-weight: normal;
+    font-style: normal
+}
+@font-face {
+    font-family: 'Exo';
+    src: url('fonts/exo-italic-webfont.eot');
+    src: url('fonts/exo-italic-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/exo-italic-webfont.woff') format('woff'), url('fonts/exo-italic-webfont.ttf') format('truetype'), url('fonts/exo-italic-webfont.svg#exoitalic') format('svg');
+    font-weight: normal;
+    font-style: italic
+}
+@font-face {
+    font-family: 'Exo';
+    src: url('fonts/exo-bold-webfont.eot');
+    src: url('fonts/exo-bold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/exo-bold-webfont.woff') format('woff'), url('fonts/exo-bold-webfont.ttf') format('truetype'), url('fonts/exo-bold-webfont.svg#exobold') format('svg');
+    font-weight: bold;
+    font-style: normal
+}
+@font-face {
+    font-family: 'Exo';
+    src: url('fonts/exo-bolditalic-webfont.eot');
+    src: url('fonts/exo-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/exo-bolditalic-webfont.woff') format('woff'), url('fonts/exo-bolditalic-webfont.ttf') format('truetype'), url('fonts/exo-bolditalic-webfont.svg#exobolditalic') format('svg');
+    font-weight: bold;
+    font-style: italic
+}
+@font-face {
+    font-family: 'Museo Sans';
+    src: url('fonts/MuseoSans_500.eot');
+    src: url('fonts/MuseoSans_500.eot?#iefix') format('embedded-opentype'), url('fonts/MuseoSans_500.woff') format('woff'), url('fonts/MuseoSans_500.ttf') format('truetype'), url('fonts/MuseoSans_500.svg#museo_sans500') format('svg');
+    font-weight: normal;
+    font-style: normal
+}
+
+/* Empty. Add your own CSS if you like */
+.bdsar-header {
+	  background-color: rgb(251, 63, 42);
+    color: rgb(255, 255, 255);
+font-family: Exo, Helvetica, Arial, sans-serif;
+font-size: 16px;
+}
+
+bar.bar-custom, bar.bar-custom .bar.bar-positive, .bar-custom .nav-bar-block ion-header-bar {
+	  background-color: rgb(251, 63, 42);
+    color: rgb(255, 255, 255);
+font-family: Exo, Helvetica, Arial, sans-serif;
+font-size: 16px;
+
+}
+
+.mtxt {  
+box-sizing: border-box;
+color: rgb(16, 16, 16);
+cursor: auto;
+display: inline;
+font-family: sans-serif;
+font-size: 18px;
+font-weight: bold;
+height: auto;
+line-height: 24px;
+text-align: center;
+text-transform: uppercase;
+  }
+
+body {
+  font-family: "Exo",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #dedede;
+}
+
+
+
+.title-centasder {
+    box-sizing: border-box;
+    color: rgb(51, 51, 51);
+    height: 50px;
+    width: 701px;
+    perspective-origin: 350.5px 25px;
+    transform-origin: 350.5px 25px;
+    border: 0px none rgb(51, 51, 51);
+    font: normal normal normal normal 16px/24px Exo, Helvetica, Arial, sans-serif;
+    margin: -76px 0px 0px;
+    outline: rgb(51, 51, 51) none 0px;
+}/*#HEADER_2*/
+
+#NAV_3 {
+    box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 1px 0px;
+    box-sizing: border-box;
+    color: rgb(153, 153, 153);
+    height: 50px;
+    min-height: 50px;
+    position: relative;
+    width: 701px;
+    perspective-origin: 350.5px 25px;
+    transform-origin: 350.5px 25px;
+    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgb(153, 153, 153);
+    font: normal normal normal normal 16px/24px Exo, Helvetica, Arial, sans-serif;
+    outline: rgb(153, 153, 153) none 0px;
+}/*#NAV_3*/
+
+#DIV_4 {
+    box-sizing: border-box;
+    color: rgb(153, 153, 153);
+    height: 50px;
+    width: 701px;
+    perspective-origin: 350.5px 25px;
+    transform-origin: 350.5px 25px;
+    border: 0px none rgb(153, 153, 153);
+    font: normal normal normal normal 16px/24px Exo, Helvetica, Arial, sans-serif;
+    outline: rgb(153, 153, 153) none 0px;
+    padding: 0px 15px;
+}/*#DIV_4*/
+
+.title-centdser {
+    box-sizing: border-box;
+    color: rgb(153, 153, 153);
+    height: 50px;
+    width: 701px;
+    perspective-origin: 350.5px 25px;
+    transform-origin: 350.5px 25px;
+    background: rgb(251, 63, 42) none repeat scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgb(153, 153, 153);
+    font: normal normal normal normal 16px/24px Exo, Helvetica, Arial, sans-serif;
+    margin: 0px -15px;
+    outline: rgb(153, 153, 153) none 0px;
+}/*#DIV_5*/
+
+.bar.bar-stable .title   {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    text-transform: uppercase;
+    font: normal normal bold normal 18px/24px Exo, Helvetica, Arial, sans-serif;
+    outline: rgb(255, 255, 255) none 0px;
+    margin-top:10px;
+
+}/*#A_6*/
+
+.bar-stable .button.button-clear{
+    color: rgb(255, 255, 255);
+
+}
+
+.bar.bar-stable .tidtle {
+    box-sizing: border-box;
+    color: rgb(16, 16, 16);
+    text-align: center;
+    text-transform: uppercase;
+    border: 0px none rgb(16, 16, 16);
+    font: normal normal bold normal 18px/24px Exo, Helvetica, Arial, sans-serif;
+    outline: rgb(16, 16, 16) none 0px;
+}/*#SPAN_1*/
+
+
+.item-thumbnail-right .image-loader-container {
+  max-width: 81px;
+  max-height: 81px;
+  width: 100%;
+  height: 100%;
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  background-color: #e5e5e5;
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+}
+
+.item-body .image-loader-container {
+	width: 100%;
+	text-align: center;
+	height: 200px;
+	margin-top: 90px;
+}
+

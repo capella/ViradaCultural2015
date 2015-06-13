@@ -1,0 +1,47 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="{{evento.name}}">
+  <ion-content lazy-scroll>
+
+  <div class="item">
+    <h2>{{evento.name}}</h2>
+    <p>{{evento.startsOn}} - {{evento.startsAt}}</p>
+  </div>
+
+  <div class="item item-body">
+    <img class="full-image" image-lazy-loader="lines" image-lazy-src="{{evento.image768}}" ng-if="evento.image768">
+    <p ng-if="evento.shortDescription!='...'" style="text-align: justify;">
+      {{evento.shortDescription}}
+    </p>
+    <p>
+      <a href="#" class="subdued" ng-show="evento.price">{{evento.price}}</a>
+      <a href="#" class="subdued" ng-show="evento.classificacaoEtaria">{{evento.classificacaoEtaria}}</a>
+    </p>
+  </div>
+
+  <div class="item" ng-if="local.name">
+        <b><small>{{local.name}}</small></b><br>
+        <small>{{local.endereco}}</small>
+  </div>
+  <div class="item" ng-if="local.name" style="padding:0;">
+        <div style="width:100%;height:400px;" id="map_canvas_z{{evento.id}}">{{map()}}</div>
+  </div>
+
+   
+
+  <div class="item tabs tabs-secondary tabs-icon-left">
+    <a class="tab-item" ng-click="favoritoadd(evento.id)">
+      <i class="icon ion-thumbsup"></i>
+      Adicionar aos favoritos.
+    </a>
+  </div>
+
+
+
+
+  </ion-content>
+</ion-view>

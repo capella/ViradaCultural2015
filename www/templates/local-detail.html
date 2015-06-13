@@ -1,0 +1,26 @@
+<ion-view view-title="{{local.name}}">
+  <ion-nav-back-button class="button-clear"
+    ng-click="myGoBack()">
+    <i class="ion-arrow-left-c"></i> Back
+  </ion-nav-back-button>
+
+  <ion-content lazy-scroll>
+
+
+    <ion-list>
+    <!-- | orderBy: 'name'  -->
+      <ion-item class=" item-thumbnail-right" ng-repeat="evento in eventos  | limitTo:totalDisplayed" type="item-text-wrap" href="#/tab/eventos/{{evento.id}}">
+        <img image-lazy-loader="lines" image-lazy-src="{{evento.defaultImageThumb}}"  ng-if="evento.defaultImageThumb">
+        <h2>{{evento.name}}</h2>
+        <p >{{evento.shortDescription}}<br>
+        	<small>{{evento.startsOn}} - {{evento.startsAt}}</small></p>
+      </ion-item>
+  <ion-infinite-scroll
+    on-infinite="loadMore()"
+    distance="1%">
+  </ion-infinite-scroll>
+    </ion-list>
+
+
+  </ion-content>
+</ion-view>

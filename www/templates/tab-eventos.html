@@ -1,0 +1,34 @@
+<ion-view view-title="Eventos">
+
+
+<div class="bar bar-header item-input-inset bar-subheader">
+  <label class="item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon"></i>
+    <input type="search" placeholder="Pesquisar..."  ng-model="searchText.name">
+  </label>
+</div>
+
+  <ion-content style="margin-top:42px;" lazy-scroll>
+    <ion-refresher
+      pulling-text="Atualizando..."
+      on-refresh="Refresh()">
+    </ion-refresher>
+
+
+    <ion-list>
+    <!-- | orderBy: 'name'  -->
+      <ion-item class=" item-thumbnail-right" ng-repeat="evento in eventos  | filter:searchText | limitTo:totalDisplayed" type="item-text-wrap" href="#/tab/eventos/{{evento.id}}">
+        <img image-lazy-loader="lines" image-lazy-src="{{evento.defaultImageThumb}}"  ng-if="evento.defaultImageThumb">
+        <h2>{{evento.name}}</h2>
+        <p >{{evento.shortDescription}}<br>
+        	<small>{{evento.startsOn}} - {{evento.startsAt}}</small></p>
+      </ion-item>
+  <ion-infinite-scroll
+    on-infinite="loadMore()"
+    distance="1%">
+  </ion-infinite-scroll>
+    </ion-list>
+
+
+  </ion-content>
+</ion-view>
