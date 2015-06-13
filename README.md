@@ -1,4 +1,4 @@
-# ViradaCultural2015
+# Virada Cultural 2015
 
 Aplicativo feito para auxiliar as pessoas a se programarem para a Virada Cultural 2015.
 
