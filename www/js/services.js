@@ -1,144 +1,136 @@
 angular.module('starter.services', [])
 
 .factory('Favoritos', function(Data) {
-  // Might use a resource here that returns a JSON array
+    var favoritos = JSON.parse(LZString.decompress(window.localStorage['favoritos2']) || '[]');
+    return {
+        all: function() {
 
-  // Some fake testing data
-  var favoritos = JSON.parse(LZString.decompress(window.localStorage['favoritos2']) || '[]');
-  return {
-    all: function() {
-
-      angular.forEach(favoritos, function(value, key) {
-        if(value!=null)
-          value.eid = Data.achafav(value.id,value.startsAt);
-      });
-      console.log(favoritos);
-      return favoritos;
-    },
-    add: function(id) {
-      var fav = Data.evento(id);
-      favoritos.push({
-        id: fav.eventId,
-        startsOn: fav.startsOn,
-        startsAt: fav.startsAt, 
-        name: fav.name
-      });
-      window.localStorage['favoritos2'] = LZString.compress(JSON.stringify(favoritos));
-      console.log(favoritos);
-    },
-    remove: function(favorito) {
-      angular.forEach(favoritos, function(value, key) {
-        if(value==favorito)
-          favoritos.splice(key,1);
-      });
-      window.localStorage['favoritos2'] = LZString.compress(JSON.stringify(favoritos));
-      return favoritos;
-    }
-  };
+            angular.forEach(favoritos, function(value, key) {
+                if (value != null)
+                    value.eid = Data.achafav(value.id, value.startsAt);
+            });
+            console.log(favoritos);
+            return favoritos;
+        },
+        add: function(id) {
+            var fav = Data.evento(id);
+            favoritos.push({
+                id: fav.eventId,
+                startsOn: fav.startsOn,
+                startsAt: fav.startsAt,
+                name: fav.name
+            });
+            window.localStorage['favoritos2'] = LZString.compress(JSON.stringify(favoritos));
+            console.log(favoritos);
+        },
+        remove: function(favorito) {
+            angular.forEach(favoritos, function(value, key) {
+                if (value == favorito)
+                    favoritos.splice(key, 1);
+            });
+            window.localStorage['favoritos2'] = LZString.compress(JSON.stringify(favoritos));
+            return favoritos;
+        }
+    };
 })
 
 
 .factory('Data', function($http, $ionicLoading) {
-  //var locais =  JSON.parse(LZString.decompress(window.localStorage['locais']) || '{}');
-  var locais =  [];
-  //var eventos_mini = JSON.parse(LZString.decompress(window.localStorage['eventos_mini']) || '{}');
-  var eventos_mini = [];
-  var eventos = [];
-  return {
-    update: function(callback){
-      $http.get('json/spaces.json').then(function(resp) {
+    var locais = [];
+    var eventos_mini = [];
+    var eventos = [];
+    return {
+        update: function(callback) {
+            $http.get('json/spaces.json').then(function(resp) {
 
-        locais = resp.data;
+                locais = resp.data;
 
-        window.localStorage['locais'] = LZString.compress(JSON.stringify(locais));
-        $http.get('json/events.json').then(function(resp) {
-          eventos = resp.data;
+                window.localStorage['locais'] = LZString.compress(JSON.stringify(locais));
+                $http.get('json/events.json').then(function(resp) {
+                    eventos = resp.data;
 
-          eventos_mini = [];
-          angular.forEach(eventos, function(value, key) {
-              eventos_mini.push({
-                defaultImageThumb: value.defaultImageThumb,
-                name: value.name,
-                shortDescription: value.shortDescription,
-                startsOn: value.startsOn,
-                startsAt: value.startsAt,
-                eventId: value.eventId,
-                id: key
-              });
-              eventos[key].id = key;
+                    eventos_mini = [];
+                    angular.forEach(eventos, function(value, key) {
+                        eventos_mini.push({
+                            defaultImageThumb: value.defaultImageThumb,
+                            name: value.name,
+                            shortDescription: value.shortDescription,
+                            startsOn: value.startsOn,
+                            startsAt: value.startsAt,
+                            eventId: value.eventId,
+                            id: key
+                        });
+                        eventos[key].id = key;
+                    });
+
+                    callback();
+                }, function(err) {
+                    console.error('ERR', err);
+                    $scope.show = function() {
+                        $ionicLoading.show({
+                            template: 'Verifique a sua internet.',
+                            duration: 1200
+                        });
+                    };
+                });
+            }, function(err) {
+                console.error('ERR', err);
+                $ionicLoading.show({
+                    template: 'Verifique a sua internet.',
+                    duration: 1200
+                });
             });
 
-          //window.localStorage['eventos'] = LZString.compress(JSON.stringify(eventos));
-          //window.localStorage['eventos_mini'] = LZString.compress(JSON.stringify(eventos_mini));
-          callback();
-        }, function(err) {
-          console.error('ERR', err);
-            $scope.show = function() {
-              $ionicLoading.show({
-                template: 'Verifique a sua internet.',
-                duration: 1200
-              });
-            };
-        });
-      }, function(err) {
-        console.error('ERR', err);
-            $ionicLoading.show({
-              template: 'Verifique a sua internet.',
-              duration: 1200
+        },
+        data_locais: function() {
+            return locais;
+        },
+        data_eventos: function() {
+            return eventos_mini;
+        },
+        data_eventos_local: function(localid) {
+            var eventos_mini2 = [];
+            angular.forEach(eventos, function(value, key) {
+                if (localid == value.spaceId) {
+                    eventos_mini2.push({
+                        defaultImageThumb: value.defaultImageThumb,
+                        name: value.name,
+                        shortDescription: value.shortDescription,
+                        startsOn: value.startsOn,
+                        startsAt: value.startsAt,
+                        eventId: value.eventId,
+                        id: key
+                    });
+                }
             });
-      });
-
-    },
-    data_locais: function(){
-        return locais;
-    },
-    data_eventos: function(){
-        return eventos_mini;
-    },
-    data_eventos_local: function(localid){
-        var eventos_mini2 = [];
-          angular.forEach(eventos, function(value, key) {
-            if (localid==value.spaceId) {
-              eventos_mini2.push({
-                defaultImageThumb: value.defaultImageThumb,
-                name: value.name,
-                shortDescription: value.shortDescription,
-                startsOn: value.startsOn,
-                startsAt: value.startsAt,
-                eventId: value.eventId,
-                id: key
-              });
-            }
+            return eventos_mini2;
+        },
+        evento: function(id) {
+            var ev = [];
+            angular.forEach(eventos, function(value, key) {
+                if (value.id == id) {
+                    ev = value;
+                }
             });
-        return eventos_mini2;
-    },
-    evento: function(id){
-      var ev = [];
-      angular.forEach(eventos, function(value, key) {
-        if (value.id == id) {
-          ev = value;
+            return ev;
+        },
+        achafav: function(eventId, startsAt) {
+            var ev;
+            angular.forEach(eventos, function(value, key) {
+                if (value.eventId == eventId && value.startsAt == startsAt) {
+                    ev = value.id;
+                }
+            });
+            return ev;
+        },
+        local_position: function(id) {
+            var ev = [];
+            angular.forEach(locais, function(value, key) {
+                if (value.id == id) {
+                    ev = value;
+                }
+            });
+            return ev;
         }
-      });
-      return ev;
-    },
-    achafav: function(eventId, startsAt){
-      var ev;
-      angular.forEach(eventos, function(value, key) {
-        if (value.eventId == eventId && value.startsAt == startsAt) {
-          ev = value.id;
-        }
-      });
-      return ev;
-    },
-    local_position: function(id){
-      var ev = [];
-      angular.forEach(locais, function(value, key) {
-        if (value.id == id) {
-          ev = value;
-        }
-      });
-      return ev;
-    }
-  };
+    };
 });
-
