@@ -1,7 +1,7 @@
 {
   "name": "viradacultural2015",
-  "version": "1.0.0",
-  "description": "ViradaCultural2015: An Ionic project",
+  "version": "0.0.3",
+  "description": "ViradaCultural2015",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
@@ -18,9 +18,10 @@
   "cordovaPlugins": [
     "cordova-plugin-device",
     "cordova-plugin-console",
-    "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
-    "com.ionic.keyboard"
+    "com.ionic.keyboard",
+    "cordova-plugin-file",
+    "plugin.google.maps"
   ],
   "cordovaPlatforms": [
     "ios",

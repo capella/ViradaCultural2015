@@ -38,15 +38,27 @@ angular.module('starter.controllers', [])
     $scope.favoritoadd = function(id) {
         Favoritos.add(id);
     };
-
 })
 
 .controller('EventosCtrl', function($scope, $stateParams, Data) {
+
+   
     $scope.totalDisplayed = 5;
 
-    Data.update(function() {
-        $scope.eventos = Data.data_eventos();
-    });
+    function carrega(){
+        Data.load(function() {
+            $scope.eventos = Data.data_eventos();
+            $scope.$broadcast('scroll.refreshComplete');
+        }, function(erro){
+            // Descobre que os arquivos nao existem, chama de novo
+            if(erro.code == 42){
+                carrega();
+                $scope.totalDisplayed = 5;
+            } else {
+                $scope.$broadcast('scroll.refreshComplete');
+            }
+        });
+    }
 
     $scope.loadMore = function() {
         $scope.totalDisplayed += 5;
@@ -56,16 +68,14 @@ angular.module('starter.controllers', [])
 
     $scope.eventos = Data.data_eventos();
     $scope.Refresh = function() {
-        Data.update(function() {
-            $scope.eventos = Data.data_eventos();
-            console.log($scope.eventos);
-            $scope.$broadcast('scroll.refreshComplete');
-        });
+        carrega();
     };
 
     $scope.$on('$stateChangeSuccess', function() {
         $scope.loadMore();
     });
+
+    carrega();
 
 })
 
@@ -74,7 +84,7 @@ angular.module('starter.controllers', [])
 
     $scope.totalDisplayed = 5;
 
-    Data.update(function() {
+    Data.load(function() {
         $scope.eventos = Data.data_eventos_local($stateParams.id);
     });
 

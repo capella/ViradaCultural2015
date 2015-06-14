@@ -181,3 +181,18 @@ body {
 	margin-top: 90px;
 }
 
+.no {
+    color: #eee;
+    text-transform: none;
+    font-size: 17px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-align: center;
+}
+
+.spinner svg {
+  stroke: rgb(231, 43, 12);
+  fill: rgb(251, 63, 42);
+}
+

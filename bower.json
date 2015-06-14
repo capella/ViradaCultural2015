@@ -7,6 +7,7 @@
   "dependencies": {
     "ionic": "~1.0.0",
     "lz-string": "~1.4.4",
-    "ion-image-lazy-load": "*"
+    "ion-image-lazy-load": "*",
+    "ngCordova": "~0.1.17-alpha"
   }
 }

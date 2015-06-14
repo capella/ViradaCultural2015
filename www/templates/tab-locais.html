@@ -9,16 +9,12 @@
 </div>
 
   <ion-content style="margin-top:42px;" lazy-scroll>
-    <ion-refresher
-      pulling-text="Atualizando..."
-      on-refresh="Refresh()">
-    </ion-refresher>
 
 
     <ion-list>
     <!-- | orderBy: 'name'  -->
       <ion-item class=" item-thumbnail-right" ng-repeat="local in locais  | filter:searchText | limitTo:totalDisplayed" type="item-text-wrap" href="#/tab/locais/{{local.id}}">
-        <img image-lazy-loader="lines" image-lazy-src="{{local['@files:avatar.viradaSmall'].url}}" ng-if="local['@files:avatar.viradaBig'].url">
+        <img image-lazy-loader="lines" image-lazy-src="{{local['@files:avatar.viradaSmall'].url}}" ng-if="local['@files:avatar.viradaBig'].url"  style="width: auto; height: auto;">
         <h2>{{local.name}}</h2>
         <p>{{local.shortDescription}}<br>
         	<small>{{local.endereco}}</small></p>
@@ -27,7 +23,9 @@
     on-infinite="loadMore()"
     distance="1%">
   </ion-infinite-scroll>
-    </ion-list>
+  </ion-list>
+
+  <div ng-if="locais.length <= 0" class="no"><i class="icon ion-sad-outline" style="font-size:140px"></i><br>Não conseguimos atualizar a programação. </h1></div>
 
 
   </ion-content>
