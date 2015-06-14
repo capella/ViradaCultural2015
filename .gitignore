@@ -10,3 +10,5 @@ particular/
 server/config.ini
 config.ini
 server/vendor/
+npm-debug.log
+www/lib/
