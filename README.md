@@ -10,7 +10,7 @@ Contribuições são bem vindas.
 
 Infelizmente só está disponível para Android, [nesse link](https://play.google.com/store/apps/details?id=com.gabrielcapella.virada2015). 
 
-## Para Testar
+### Para Testar
 ```bash
 $ npm install
 $ bower install
