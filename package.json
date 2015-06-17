@@ -1,6 +1,6 @@
 {
   "name": "viradacultural2015",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "ViradaCultural2015",
   "dependencies": {
     "gulp": "^3.5.6",

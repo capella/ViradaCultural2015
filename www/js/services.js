@@ -42,77 +42,92 @@ angular.module('starter.services', [])
     update = function(ok, error){
         this.download('spaces.json', function(){
             this.download('events.json', function(){
-                ok();
-                $ionicLoading.hide();
+                $cordovaFile.copyFile(window.cordova.file.dataDirectory , 'tmp_spaces.json', window.cordova.file.dataDirectory , 'spaces.json')
+                .then(function (success) {
+                    $cordovaFile.copyFile(window.cordova.file.dataDirectory  , 'tmp_events.json', window.cordova.file.dataDirectory , 'events.json')
+                    .then(function (success) {
+                        ok();
+                    }, error);
+                }, error);
             }, error);               
         }, error);
     };
     download = function(file, ok, error){
         var url = "http://viradacultural.prefeitura.sp.gov.br/2015/wp-content/themes/viradacultural-2015/app/"+file;
-        var targetPath = window.cordova.file.dataDirectory +file;
+        var targetPath = window.cordova.file.dataDirectory + "tmp_" + file;
         var trustHosts = true;
         var options = {};
 
         $ionicLoading.show({
-            template: 'Atualizando a programação.'
+            template: 'Atualizando a programação.',
+            noBackdrop: true
         });
 
         $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
           .then(function(result) {
+            console.log(result);
             ok();
           }, function(err) {
                 $ionicLoading.show({
                     template: 'Verifique a sua internet.',
-                    duration: 1200
+                    duration: 1200,
+                    noBackdrop: true
                 });
+                console.log(err);
                 if(typeof error !== 'undefined') error(err);
           }, function (progress) {
         }); 
     };
 
     return {
-        load: function(ok, error) {
+        load: function(okD, errorD) {
             $ionicPlatform.ready(function() {
-                $cordovaFile.readAsText(window.cordova.file.dataDirectory, 'spaces.json')
-                .then(function (success_locais) {
-                    $cordovaFile.readAsText(window.cordova.file.dataDirectory, 'events.json')
-                    .then(function (success_eventos) {
-                        locais = JSON.parse(success_locais);
-                        eventos = JSON.parse(success_eventos);
+                function leitura(ok, error){
+                    $cordovaFile.readAsText(window.cordova.file.dataDirectory, 'spaces.json')
+                    .then(function (success_locais) {
+                        $cordovaFile.readAsText(window.cordova.file.dataDirectory, 'events.json')
+                        .then(function (success_eventos) {
+                            locais = JSON.parse(success_locais);
+                            eventos = JSON.parse(success_eventos);
 
-                        eventos_mini = [];
-                        angular.forEach(eventos, function(value, key) {
-                            eventos_mini.push({
-                                defaultImageThumb: value.defaultImageThumb,
-                                name: value.name,
-                                shortDescription: value.shortDescription,
-                                startsOn: value.startsOn,
-                                startsAt: value.startsAt,
-                                eventId: value.eventId,
-                                id: key
+                            eventos_mini = [];
+                            angular.forEach(eventos, function(value, key) {
+                                eventos_mini.push({
+                                    defaultImageThumb: value.defaultImageThumb,
+                                    name: value.name,
+                                    shortDescription: value.shortDescription,
+                                    startsOn: value.startsOn,
+                                    startsAt: value.startsAt,
+                                    eventId: value.eventId,
+                                    id: key
+                                });
+                                eventos[key].id = key;
                             });
-                            eventos[key].id = key;
-                        });
-                        ok();
+                            $ionicLoading.hide();
 
-                    }, erro);
-                }, erro);
+                            // Atualiza o app em back.
+                            //update(function(){},function(){});
+                            okD();
 
-                function erro (err){
-                    if (err.code == 1) {
-                        update(function(){
-                            err.code = 42;
-                            if(typeof error !== 'undefined') error(err);
-                        }, function(){
-                            $ionicLoading.show({
-                                template: 'Verifique a sua internet.',
-                                duration: 2000
-                            });
-                            if(typeof error !== 'undefined') error(err);
-                        });
-                    };
+                        }, errorD);
+                    }, errorD);
                 }
+
+                update(function(ok, error){
+                    leitura();
+                }, function(){
+                    $ionicLoading.show({
+                        template: 'Verifique a sua internet.',
+                        duration: 2000,
+                        noBackdrop: true
+                    });
+                    leitura();
+                });
+                
             });
+        },
+        update:  function(ok, error){
+            update(ok, error);
         },
         data_locais: function() {
             return locais;

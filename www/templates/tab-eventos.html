@@ -17,11 +17,11 @@
 
     <ion-list>
     <!-- | orderBy: 'name'  -->
-      <ion-item class=" item-thumbnail-right" ng-repeat="evento in eventos  | filter:searchText | limitTo:totalDisplayed" type="item-text-wrap" href="#/tab/eventos/{{evento.id}}">
+      <ion-item class=" item-thumbnail-right" ng-repeat="evento in eventos  | filter:searchText | limitTo:totalDisplayed | orderBy:['startsOn','startsAt']" type="item-text-wrap" href="#/tab/eventos/{{evento.id}}">
         <img image-lazy-loader="lines" image-lazy-src="{{evento.defaultImageThumb}}"  ng-if="evento.defaultImageThumb" style="width: auto; height: auto;">
-        <h2>{{evento.name}}</h2>
-        <p >{{evento.shortDescription}}<br>
-        	<small>{{evento.startsOn}} - {{evento.startsAt}}</small></p>
+        <h2>{{::evento.name}}</h2>
+        <p >{{::evento.shortDescription}}<br>
+        	<small>{{::evento.startsOn}} - {{::evento.startsAt}}</small></p>
       </ion-item>
       <ion-infinite-scroll
         on-infinite="loadMore()"
