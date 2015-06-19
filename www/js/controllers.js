@@ -45,25 +45,14 @@ angular.module('starter.controllers', [])
    
     $scope.totalDisplayed = 5;
 
-    function carrega(){
-        Data.load(function() {
-            $scope.eventos = Data.data_eventos();
-            $scope.$broadcast('scroll.refreshComplete');
-        }, function(erro){
-            console.log(erro);
-            $scope.$broadcast('scroll.refreshComplete');
-        });
-    }
+    Data.load(function() {
+        $scope.eventos = Data.data_eventos();
+    });
 
     $scope.loadMore = function() {
         $scope.totalDisplayed += 5;
         $scope.$broadcast('scroll.infiniteScrollComplete');
         //console.log(1); 
-    };
-
-    $scope.eventos = Data.data_eventos();
-    $scope.Refresh = function() {
-        carrega();
     };
 
     $scope.$on('$stateChangeSuccess', function() {
