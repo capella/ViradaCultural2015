@@ -35,7 +35,7 @@ angular.module('starter.services', [])
 })
 
 
-.factory('Data', function($http, $ionicLoading, $cordovaFile, $ionicPlatform, $cordovaFileTransfer) {
+.factory('Data', function($http, $ionicLoading) {
     var locais = [];
     var eventos_mini = [];
     var eventos = [];
