@@ -59,7 +59,6 @@ angular.module('starter.controllers', [])
         $scope.loadMore();
     });
 
-    carrega();
 
 })
 

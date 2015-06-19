@@ -41,7 +41,7 @@ angular.module('starter.services', [])
     var eventos = [];
 
     return {
-        load: function(okD, errorD) {
+        load: function(callback) {
             $http.get('json/spaces.json').then(function(resp) {
                 locais = resp.data;
                 $http.get('json/events.json').then(function(resp) {

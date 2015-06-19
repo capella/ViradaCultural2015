@@ -44,6 +44,4 @@
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
   <plugin name="cordova-plugin-file" spec="https://git-wip-us.apache.org/repos/asf/cordova-plugin-file.git"/>
   <plugin name="plugin.google.maps" spec="^1.2.5"/>
-  <plugin name="cordova-plugin-file-transfer" spec="https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git"/>
-  <plugin name="com.google.cordova.admob" spec="^2.7.7"/>
 </widget>
